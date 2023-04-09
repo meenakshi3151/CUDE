@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+  <style>
+    /* Apply some basic styles to improve the form appearance */
+body {
+  background-color:skyblue;
+  font-family: Arial, sans-serif;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:antiquewhite;
+
+  height: 100vh;
+}
+
+.sign-container {
+  background-color:cadetblue;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sign-form h2 {
+  margin-bottom: 20px;
+}
+
+.form1 {
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+button{
+  background-color: #3e8e41;
+
+}
+/* Apply responsive design to the form for different screen sizes */
+@media screen and (max-width: 600px) {
+  .sign-container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  label {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"] {
+    width: 100%;
+  }
+}
+
+  </style>
+    <div class="pages">
+  <div class="mar">
+  <div class="sign-container">
+    <form class="sign-form" method="post" action="final.php">
+      <h2>Sign In</h2>
+      <div class="form1">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+     
+      <div class="form1">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form1">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form1">
+          <label for="Registration Number">Registration no:</label>
+          <input type="text" id="regno" name="regno" required></textarea>
+        </div>
+        <div class="form1">
+          <label for="Gender">Gender:</label>
+          <input type="text" id="gender" name="gender" required>
+        </div>
+        <div class="form1">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form1">
+          <label for="confirm-password">Confirm Password:</label>
+          <input type="password" id="conpassword" name="conpassword" required>
+        </div>
+      <div class="form1">
+        <input type="submit" value="Sign In">
+        <button type="button" id="index"><span class="index"></span><a href="index.html">Back to Home</a></button>
+   </div>
+  </div>
+ </div>
+</body>
+</html>
