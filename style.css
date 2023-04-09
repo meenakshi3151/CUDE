@@ -1,0 +1,141 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: sans-serif;
+  
+}
+.banner{
+    width:100%;
+    background-image:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)) ,url(banner.jpg);
+  background-size: cover;
+ background-position: center;
+height:100vh;
+
+}
+
+.navbar{
+    width:85%;
+    margin:auto;
+    padding:35 px 0;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width:120px;
+    cursor:pointer;
+background-color: rgb(59, 58, 58);
+}
+
+.navbar ul li{
+    list-style:none;
+    display:inline-block;
+    margin:0px 20px;
+    position: relative;
+}
+
+.navbar ul li a{
+    text-decoration:none;
+    color:white;
+    text-transform: uppercase;
+}
+
+.navbar ul li ::after{
+content:'';
+height:3px;
+width:100%;
+background:#009688;
+position: absolute;
+left:0;
+bottom:-10px;
+/* transition:0.5s; */
+}
+
+ .navbar ul li:hover::after{ 
+width:100%;
+}
+
+.content{
+    width:100%;
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);/*study it*/
+    text-align: center;
+color:beige;
+}
+
+.content h1{
+    font-size: 70px;
+    margin-top: 60px;
+}
+
+.content p {
+    margin:5px auto;
+    font-weight:100;
+    line-height:25px ;
+}
+
+button{
+width:120px;
+padding:15 px 10;
+text-align: center;
+margin:20px 10px;
+font-size: 20px;
+border-radius: 20px;
+font-weight: 25px;
+color:white;
+border:2px solid #009688;
+background:transparent;
+position: relative;
+overflow:hidden;
+}
+
+#signin{
+   width:120px;
+    padding:15 px 10;
+    text-align: center;
+    margin:10px 10px;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 25px;
+    color:white;
+    border:2px solid #ff5e5e;
+    background:transparent;
+    position: relative;
+    /* overflow:hidden; */
+    
+}
+
+span{
+    background:#009688;
+    height:100%;
+    width:0%;
+    border-radius:25px;
+    position: absolute;
+    left:0;
+    bottom:0px;
+z-index:-1;
+transition: 0.5s;
+}
+
+ .sign_up{
+  background:#ed5757;
+  height:100%;
+  width:0%;
+  border-radius:25px;
+  position: absolute;
+  left:0;
+  bottom:0px;
+z-index:-1;
+transition: 0.5s;
+} 
+
+button:hover span{
+width:100%;
+border:none;
+}
+
+
+
+   
