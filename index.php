@@ -1,4 +1,3 @@
-
 <?php
 function is_strong_password($password) {
   $lowercase = '/[a-z]/';
@@ -64,6 +63,53 @@ $insert=true;
 }
    }
   }
+  if (isset($_POST['regno'])) {
+    $regno = $_POST['regno'];
+    $password = $_POST['password'];
+    
+    $sql="SELECT * FROM signup WHERE REGNO='$regno' AND `Password`='$password'";
+    $result = $conn->query($sql);
+    if(mysqli_num_rows($result )>0){
+
+   $query = "INSERT INTO `login` (`Regno`, `Password`,`Intime`) VALUES ('$regno', '$password',current_timestamp())";
+    if ($conn->query($query) === true) {
+      echo "<script> alert('Come by 10:00 P.M');</script>";  
+    } 
+    else {
+        // echo "Error: " . $query . "<br>" . $conn->error;
+    }
+  }
+  else{
+    echo "<script> alert('Login Credentials doesn't match');</script>";
+  }
+}
+if (isset($_POST['regno1'])) {
+  $regno = $_POST['regno1'];
+  $password = $_POST['password1'];
+  
+  $sql = "SELECT * FROM `login` WHERE REGNO='$regno' AND `Password`='$password1' AND Outtime=NULL ";
+  $result = $conn->query($sql);
+  
+  if (mysqli_num_rows($result) > 0) {
+  $sql= " UPDATE `login` SET Outtime = current_timestamp() WHERE REGNO='$regno' AND Outtime=NULL";
+
+    echo "<script> alert('You entered the hostel .');</script>";  
+    if($conn->query($sql)==true){
+      echo "<script> alert('You signed up successfully');</script>";
+     
+      }
+    else{
+      echo "ERROR:$sql<br";
+    }
+   
+  } 
+  else {
+    echo "<script> alert('You didn't do the entry while going');</script>";
+  }
+}
+
+
+
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +117,7 @@ $insert=true;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -83,6 +129,7 @@ $insert=true;
     <li><a href="#">Home</a></li>
     <li><a href="#">Rules</a></li>
     <li><a href="#">Team</a></li>
+  
     <li><a href="#">About Us</a></li>
     <li><a href="http://www.mnnit.ac.in/">MNNIT</a></li>
 </ul>
@@ -94,7 +141,7 @@ $insert=true;
 <button type="button" id="checkin" onclick="checkin()"><span></span>Check IN</button>
    <button type="button" id="checkout" onclick="checkout()"><span></span>Check OUT</button>
   <p>Haven't entered details yet?</p> 
- <button type="button" id="signin"><span class="sign_up"></span><a href="signup.php">Sign UP</a></button>
+ <button type="button" id="signin"><span class="sign_up"></span><a href="signup.php" style="color: white;">Sign UP</a></button>
 </div>
    
 </div>
@@ -103,29 +150,26 @@ $insert=true;
       let currentTime = new Date();
       let hours = currentTime.getHours();
 console.log(currentTime);
-if (hours >=6 && hours< 22) {
+if (hours >=3 && hours< 22) {
   alert("You can go out now. " );
-  let RegistrationNoo = prompt("Registration No:");
-        let Passwordo=prompt("Password:");
-      
+  window.open('checkin.php', '_blank');
 } 
 else {
   alert("You cannot go out!");
 }
-      
-  }
-  function checkout() {
+ }
+ 
+ function checkout() {
   let currentTime = new Date();
   let hours = currentTime.getHours();
-  console.log(currentTime);
-  if ( hours >6 && hours < 22 ) {
+ 
+  if ( hours >6&& hours < 22) {
     alert("You are on time!");
-    let RegistrationNoi = prompt("Registration NO:");
-    let Passwordi = prompt("Password:");
+    window.open('checkout.php', '_blank');
+    
   } else {
     alert("You are late!");
-    let RegistrationNol = prompt("Registration NO:");
-    let Passwordl = prompt("Password:");
+   window.open('latecome.php','_blank');
   }
 
 }
