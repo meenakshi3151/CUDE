@@ -1,4 +1,5 @@
 <?php
+$yess=0;
 function is_strong_password($password) {
   $lowercase = '/[a-z]/';
   $uppercase = '/[A-Z]/';
@@ -8,63 +9,70 @@ function is_strong_password($password) {
   // Check if password meets requirements
   if (strlen($password) < 8) {
     echo "<script> alert('Enter a strong Password ');</script>";
+
+    $yess=1;
   }
-  if (!preg_match($lowercase, $password)) {
-    echo "<script> alert('Enter a strong Password using lowercase');</script>";
-  }
-  if (!preg_match($uppercase, $password)) {
-    echo "<script> alert('Enter a strong Password using uppercase');</script>";
-  }
+  // if (!preg_match($lowercase, $password)) {
+  //   echo "<script> alert('Enter a strong Password using lowercase');</script>";
+  // }
+  // if (!preg_match($uppercase, $password)) {
+  //   echo "<script> alert('Enter a strong Password using uppercase');</script>";
+  // }
   if (!preg_match($digits, $password)) {
     echo "<script> alert('Enter a strong Password using digits');</script>";
+    $yess=1;
   }
   if (!preg_match($special, $password)) {
     echo "<script> alert('Enter a strong Password using special characters');</script>";
+    $yess=1;
   }
 }
-$server="localhost";
-$username="root";
-$password="";
-$signin=false;
-$db="cude";
-$conn=mysqli_connect($server,$username,$password,$db);
-if(isset($_POST['name'])){
 
-$insert=true;
-  $name=$_POST['name'];
- $gender=$_POST['gender'];
- $password=$_POST['password'];
- $phone=$_POST['phone'];
- $email=$_POST['email'];
- $regno=$_POST['regno'];
- $passe=false;
- $conpassword=$_POST['conpassword'];
- is_strong_password($password);
- if($password!=$conpassword){
-    echo "<script> alert('Entered passwords does not match');</script>";
-   }
-   else{
-    $email1 =$email;
-     $query4 = "SELECT * FROM signup WHERE REGNO = '$regno'";
-     $resultp = $conn->query($query4);
-     if (mysqli_num_rows($resultp)>0) {
-        echo "<script> alert('Registration Number is already registered with us');</script>";
-     }
-     else {
-   
-  $query="INSERT INTO `signup` (`Name`, `REGNO`, `PhoneNo`, `Gender`,`Email`,`Password`) VALUES ( '$name', '$regno', '$phone', '$gender','$email', '$password');";
- if($conn->query($query)==true){
-   echo "<script> alert('You signed up successfully');</script>";
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "cude";
+$conn = mysqli_connect($server, $username, $password, $db);
+
+if (isset($_POST['signup'])) { // Check if the form is submitted
+
+  $name = $_POST['name'];
+  $gender = $_POST['gender'];
+  $password = $_POST['password'];
+  $phone = $_POST['phone'];
+  $email = $_POST['email'];
+  $regno = $_POST['regno'];
+  $conpassword = $_POST['conpassword'];
+
+  is_strong_password($password);
+  if($yess==0){
+
   
-   }
- else{
-   echo "ERROR:$sql<br";
- }
-}
-   }
+    if ($password != $conpassword) {
+      echo "<script> alert('Entered passwords do not match');</script>";
+    } else {
+      $query4 = "SELECT * FROM signup WHERE REGNO = '$regno'";
+      $resultp = $conn->query($query4);
+      if (mysqli_num_rows($resultp) > 0) {
+        echo "<script> alert('Registration Number is already registered with us');</script>";
+      } else {
+     
+        $query = "INSERT INTO `signup` (`Name`, `REGNO`, `PhoneNo`, `Gender`, `Email`, `Password`) 
+                  VALUES ('$name', '$regno', '$phone', '$gender', '$email', '$password');";
+        
+        if ($conn->query($query) === true) {
+          echo "<script> alert('You signed up successfully');</script>";
+        } else {
+          echo "ERROR: " . $conn->error;
+        }
+      }
+    }
   }
-?> 
+}
+?>
 <!DOCTYPE html>
+<!-- Rest of the HTML remains unchanged -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -205,8 +213,9 @@ button{
         </div>
       <div class="form1">
         <input type="submit" value="SignUp" name="signup">
-        <button type="button" id="index"><span class="index"></span><a href="index.html">Back to Home</a></button>
+       
    </div>
+   <button type="button" id="index"><span class="index"></span><a href="index.php">Back to Home</a></button>
   </div>
  </div>
  
